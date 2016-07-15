@@ -1,0 +1,7 @@
+/var/log/top.log {
+    rotate 14
+    daily
+    compress
+    missingok
+    notifempty
+}
