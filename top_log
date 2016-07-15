@@ -1,0 +1,29 @@
+#!/bin/sh
+
+TOP=/usr/bin/top
+IOTOP=/usr/sbin/iotop
+DATE=/bin/date
+HEAD=/usr/bin/head
+ECHO=/bin/echo
+
+LOG=/var/log/top.log
+
+${DATE}                                 >> ${LOG}
+
+if [ -x ${TOP} ]
+then
+    ${TOP} -n 1 -b | ${HEAD} -n 15 2>&1 >> ${LOG}
+    ${ECHO} ""                          >> ${LOG}
+else
+    ${ECHO} "Please install <top> package"
+fi
+
+if [ -x $IOTOP ]
+then
+    ${IOTOP} -ob -n 1              2>&1 >> ${LOG}
+    ${ECHO} ""                          >> ${LOG}
+else
+    ${ECHO} "Please install <iotop> package"
+fi
+
+exit 
