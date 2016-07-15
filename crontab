@@ -1,0 +1,4 @@
+# This is example crontab record.
+# Install it for root
+
+* * * * * /path/to/top_log
